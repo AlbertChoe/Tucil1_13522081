@@ -1,0 +1,4 @@
+Best Reward: 35
+Best Path Tokens: 7A BD 1C 55 BD 7A BD
+Best Trimmed Path Tokens: (0, 0) (3, 0) (3, 1) (4, 1) (4, 2) (3, 2) (3, 5)
+Time taken: 94.34 ms
