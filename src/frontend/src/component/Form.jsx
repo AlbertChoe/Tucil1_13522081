@@ -5,12 +5,13 @@ function Form() {
     const [matrix, setMatrix] = useState('');
     const [sequences, setSequences] = useState('');
 
+    
     const handleSubmit = (e) => {
-        e.preventDefault();
-        // Handle the form submission here.
-        console.log({ bufferSize, matrix, sequences });
-    };
-
+            e.preventDefault();
+            // Handle the form submission here.
+            console.log({ bufferSize, matrix, sequences });
+        };
+    
     return (
         <div className="max-w-screen-xl w-full h-screen bg-slate-100 rounded-xl p-16 m-auto">
             <form onSubmit={handleSubmit} className="">
@@ -51,6 +52,7 @@ function Form() {
                 <button type="submit" className="w-full justify-center mt-10 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
                     Solve
                 </button>
+               
             </form>
         </div>
     );
