@@ -8,7 +8,7 @@ def main():
         "Use file input or terminal input? (file/terminal): ").lower()
     if data_source == 'file':
         file_path = input("txt file name : ")
-        data = read_file("../test/"+file_path)
+        data = read_file("../../test/"+file_path)
         if data == None:
             return
         buffer_size = data['buffer_size']
