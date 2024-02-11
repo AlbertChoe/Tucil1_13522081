@@ -27,12 +27,13 @@ const Navbar = () => {
                     </div>
                     <div className="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                         <div className="flex-shrink-0 flex items-center">
-                            <Link to="/" className="text-lg font-bold hover:text-white">YourAppName</Link>
+                            <Link to="/" className="text-lg font-bold hover:text-white">Cyberpunk 2077 Solver</Link>
                         </div>
                         <div className="hidden sm:block sm:ml-6">
                             <div className="flex space-x-4">
-                                <Link to="/" className="text-gray-300 hover:bg-indigo-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Home</Link>
+                                <Link to="/" className="text-gray-300 hover:bg-indigo-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Full Manual</Link>
                                 <Link to="/upload" className="text-gray-300 hover:bg-indigo-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">File Upload</Link>
+                                <Link to="/auto" className="text-gray-300 hover:bg-indigo-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"> Auto Generate</Link>
                             </div>
                         </div>
                     </div>
@@ -42,8 +43,9 @@ const Navbar = () => {
             {/* Mobile menu, show/hide based on menu state. */}
             <div className={`${isMobileMenuOpen ? 'block' : 'hidden'} sm:hidden`} id="mobile-menu">
                 <div className="px-2 pt-2 pb-3 space-y-1">
-                    <Link to="/" className="hover:bg-indigo-700 text-white block px-3 py-2 rounded-md text-base font-medium">Home</Link>
+                    <Link to="/" className="hover:bg-indigo-700 text-white block px-3 py-2 rounded-md text-base font-medium">Full Manual</Link>
                     <Link to="/upload" className="hover:bg-indigo-700 text-white block px-3 py-2 rounded-md text-base font-medium">File Upload</Link>
+                    <Link to="/auto" className="hover:bg-indigo-700 text-white block px-3 py-2 rounded-md text-base font-medium">Auto Generate</Link>
                 </div>
             </div>
         </nav>
