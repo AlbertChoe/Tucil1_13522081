@@ -69,7 +69,8 @@ function AutoForm() {
     };
 
     return (
-        <div className="max-w-screen-xl w-full h-fit bg-slate-100 rounded-xl p-16 m-auto">
+        <div className="max-w-screen-xl w-full h-fit bg-slate-100 rounded-xl px-16 pb-16 pt-10 m-auto">
+            <h1 className='md:w-1/2 w-10/12  text-3xl mb-10 mx-auto '>Auto Generate Matrix and Sequence</h1>
             <form onSubmit={handleSubmit} className="grid md:grid-cols-2 grid-cols-1 gap-7">
               
             <div className='flex flex-col w-full '>
