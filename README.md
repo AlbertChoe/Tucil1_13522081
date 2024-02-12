@@ -7,6 +7,8 @@
 * [Technologies Used](#technologies-used)
 * [Screenshots](#screenshots)
 * [Setup](#setup)
+* [Creator](#creator)
+* [Link](#link)
 <!-- <!-- * [License](#license) -- -->
 
 ## General Information
@@ -38,7 +40,11 @@ The game follows a set of rules to determine how sequences are matched and rewar
 
 
 ## Screenshots
-### Landing Page
+![image](https://github.com/AlbertChoe/Tucil1_13522081/assets/114172712/4b999273-cbaf-462a-9b5a-e029c3783b59)
+![image](https://github.com/AlbertChoe/Tucil1_13522081/assets/114172712/425013e4-d95a-4ab6-80f6-de91c1b6d78d)
+![image](https://github.com/AlbertChoe/Tucil1_13522081/assets/114172712/0666c476-a856-4dfc-b552-9c6a8f12b04b)
+
+
 
 <!-- If you have screenshots you'd like to share, include them here. -->
 ### Search Page
@@ -109,7 +115,7 @@ The backend server should now be running at http://127.0.0.1:5000.
 To use the CLI version of the solver, follow these steps:
 1. Clone this repository:
     ```bash
-    git clone [<repository-url>](https://github.com/AlbertChoe/Tucil1_13522081.git)
+    git clone https://github.com/AlbertChoe/Tucil1_13522081
     ```
 2. Navigate to the src directory:
     ```bash
@@ -122,12 +128,10 @@ To use the CLI version of the solver, follow these steps:
 This setup guide should help you get started with both the web-based GUI and CLI versions of the Cyberpunk 2077 Breach Protocol solver.
 
 
+ ## Creator
+Albert - 13522081 - K01
+
+ ## Link
  - Repository : (https://github.com/AlbertChoe/Tucil1_13522081.git)
 
-
-
-## File Structure
-```bash
-
-```
 
