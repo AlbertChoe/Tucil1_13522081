@@ -79,19 +79,34 @@ function FileUpload() {
                 </button>
             </form>
             {result && (
-                <div className="mt-8 p-4 border rounded shadow-lg bg-white">
-                    <h3 className="text-lg font-semibold">Result</h3>
-                    <p><strong>Best Reward:</strong> {result.bestReward}</p>
-                    <p><strong>Best Trimmed Path:</strong> [{result.bestTrimmedPath.join('], [')}]</p>
-                    <p><strong>Best Trimmed Path Tokens:</strong> {result.bestTrimmedPathTokens.join(' -> ')}</p>
-                    <p><strong>Time Taken:</strong> {result.timeTaken} ms</p>
-                    <button
-                        onClick={downloadResults}
-                        className="mt-4 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
-                    >
-                        Download Results
-                    </button>
-                </div>
+                <>
+                    <div className="mt-8 p-4 border rounded shadow-lg bg-white">
+                        <h3 className="text-lg font-semibold">Matrix</h3>
+                        {result.matrix.map((row, index) => (
+                            <div key={index}>{row.join(' ')}</div>
+                        ))}
+                    </div>
+                    <div className="mt-4 p-4 border rounded shadow-lg bg-white">
+                        <h3 className="text-lg font-semibold">Sequences with Rewards</h3>
+                        {result.sequences.map((seq, index) => (
+                            <div key={index}>{seq.sequence} - Reward: {seq.reward}</div>
+                        ))}
+                    </div>
+
+                    <div className="mt-4 p-4 border rounded shadow-lg bg-white">
+                        <h3 className="text-lg font-semibold">Result</h3>
+                        <p><strong>Best Reward:</strong> {result.bestReward}</p>
+                        <p><strong>Best Path:</strong> [{result.bestTrimmedPath.join('], [')}]</p>
+                        <p><strong>Best Path Tokens:</strong> {result.bestTrimmedPathTokens.join(' -> ')}</p>
+                        <p><strong>Time Taken:</strong> {result.timeTaken} ms</p>
+                        <button
+                            onClick={downloadResults}
+                            className="mt-4 py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500"
+                        >
+                            Download Results
+                        </button>
+                    </div>
+                </>
             )}
         </div>
     );

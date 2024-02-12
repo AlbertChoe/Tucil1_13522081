@@ -41,10 +41,6 @@ def solve():
     return jsonify(result)
 
 
-def allowed_file(filename):
-    return '.' in filename and filename.rsplit('.', 1)[1].lower() in {'txt'}
-
-
 @app.route('/upload', methods=['POST'])
 def upload_file():
     if 'file' not in request.files:
@@ -77,17 +73,24 @@ def upload_file():
 
         best_trimmed_path_tokens = [matrix[pos[0]][pos[1]]
                                     for pos in best_trimmed_path]
-
+        sequences_response = [{'sequence': ' '.join(
+            seq[0]), 'reward': seq[1]} for seq in sequences]
         # Construct the result to send back to the frontend
+
         result = {
             'bestReward': best_reward,
             'bestPath': best_path,
             'bestTrimmedPath': best_trimmed_path,
             'bestTrimmedPathTokens': best_trimmed_path_tokens,
-            'timeTaken': round(time_taken, 2)
+            'timeTaken': round(time_taken, 2),
+            'matrix': matrix,
+            'sequences': sequences_response
         }
-
         return jsonify(result)
+
+
+def allowed_file(filename):
+    return '.' in filename and filename.rsplit('.', 1)[1].lower() in {'txt'}
 
 
 def generate_data_web(tokens, buffer_size, matrix_width, matrix_height, num_sequences, max_sequence_size):
@@ -117,22 +120,25 @@ def auto_solve():
         data['maxSequenceSize']
     )
 
-    print("success")
     start_time = time.time()
     best_reward, best_path, best_trimmed_path = solve_algo(
         matrix, sequences, buffer_size)
     end_time = time.time()
     time_taken = (end_time - start_time) * 1000
-    print("Best Trimmed Path:", best_trimmed_path)
-    print("Matrix Sample:", matrix[0][0])
+    # print("Best Trimmed Path:", best_trimmed_path)
+    # print("Matrix Sample:", matrix[0][0])
     best_trimmed_path_tokens = [
         ' '.join(matrix[pos[0]][pos[1]] for pos in best_trimmed_path)]
+    sequences_response = [{'sequence': ' '.join(
+        seq[0]), 'reward': seq[1]} for seq in sequences]
     result = {
         'bestReward': best_reward,
         'bestPath': best_path,
         'bestTrimmedPath': best_trimmed_path,
         'bestTrimmedPathTokens': best_trimmed_path_tokens,
-        'timeTaken': round(time_taken, 2)
+        'timeTaken': round(time_taken, 2),
+        'matrix': matrix,
+        'sequences': sequences_response
     }
 
     return jsonify(result)

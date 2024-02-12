@@ -116,8 +116,8 @@ function Form() {
                 <div className="mt-8 p-4 border rounded shadow-lg bg-white  ">
                     <h3 className="text-lg font-semibold">Result</h3>
                     <p><strong>Best Reward:</strong> {result.bestReward}</p>
-                    <p><strong>Best Trimmed Path:</strong> [{result.bestTrimmedPath.join('], [')}]</p>
-                    <p><strong>Best Trimmed Path Tokens:</strong> {result.bestTrimmedPathTokens.join(' -> ')}</p>
+                    <p><strong>Best Path:</strong> [{result.bestTrimmedPath.join('], [')}]</p>
+                    <p><strong>Best Path Tokens:</strong> {result.bestTrimmedPathTokens.join(' -> ')}</p>
                     <p><strong>Time Taken:</strong> {result.timeTaken} ms</p>
                     <button
                         onClick={downloadResults}

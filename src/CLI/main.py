@@ -36,13 +36,14 @@ def main():
         return
     processed_sequences = sequence_validator(
         processed_sequences, buffer_size)
-    # print("Processed Matrix:")
-    # for row in processed_matrix:
-    #     print(' '.join(row))
+    print("Processed Matrix:")
+    for row in processed_matrix:
+        print(' '.join(row))
 
-    # print("\nProcessed Sequences:")
-    # for sequence, reward in processed_sequences:
-    #     print(f"{' '.join(sequence)} with reward {reward}")
+    print("\nProcessed Sequences:")
+    for sequence, reward in processed_sequences:
+        print(f"{' '.join(sequence)} with reward {reward}")
+    print()
     start_time = time.time()
     best_reward, best_path, best_trimmed_path = solve_algo(
         processed_matrix, processed_sequences, buffer_size)
@@ -50,17 +51,19 @@ def main():
     end_time = time.time()
     time_taken = (end_time - start_time) * 1000
 
-    path_tokens = [processed_matrix[pos[0]][pos[1]] for pos in best_path]
+    path_tokens = [processed_matrix[pos[0]][pos[1]]
+                   for pos in best_trimmed_path]
 
     print(f"Best Reward: {best_reward}")
     print("Best Path Tokens:", ' '.join(path_tokens))
 
-    # print("Best Path:")
-    # for pos in best_path:
-    #     col_row = (pos[1]+1, pos[0]+1)  # Swap positions to get (col, row)
-    #     print(col_row, end=' ')
-    print(f"Best Path: {best_path}")
-    print(f"Best Trimmed Path: {best_trimmed_path}")
+    print("Best Path:", end="")
+    for pos in best_trimmed_path:
+        col_row = (pos[1]+1, pos[0]+1)  # Swap positions to get (col, row)
+        print(col_row, end=' ')
+    print()
+    # print(f"Best Path: {best_path}")
+    # print(f"Best Path: {best_trimmed_path}")
     print(f"Time taken: {time_taken:.2f} ms")
 
     # Inside your main function, after computing best_reward, best_path, etc.
@@ -74,4 +77,8 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    while True:
+        main()
+        rerun = input("Do you want to try the program again?(y/n)")
+        if rerun.lower == 'n':
+            break
