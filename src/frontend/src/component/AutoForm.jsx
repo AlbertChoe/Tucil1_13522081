@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import LoadingIndicator from './LoadingIndicator';
 
 function AutoForm() {
     const [bufferSize, setBufferSize] = useState('');
@@ -8,9 +9,10 @@ function AutoForm() {
     const [matrixWidth, setMatrixWidth] = useState('');
     const [matrixHeight, setMatrixHeight] = useState('');
     const [result, setResult] = useState(null);
-
+    const [isLoading, setIsLoading] = useState(false);
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true); // Start loading
         setResult(null);
         const requestData = {
             bufferSize: parseInt(bufferSize, 10),
@@ -38,6 +40,8 @@ function AutoForm() {
             setResult(resultData);
         } catch (error) {
             console.error("Failed to auto-generate and solve:", error);
+        }finally {
+            setIsLoading(false); // Finish loading
         }
     };      
 
@@ -142,7 +146,10 @@ function AutoForm() {
                     Generate & Solve
                 </button>
             </form>
-            {result && (
+            {isLoading ? (
+                <LoadingIndicator/> // Your loading indicator
+            ) :
+            result && (
                 <>
                     <div className="mt-8 p-4 border rounded shadow-lg bg-white">
                         <h3 className="text-lg font-semibold">Matrix</h3>

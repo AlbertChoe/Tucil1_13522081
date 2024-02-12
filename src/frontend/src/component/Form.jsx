@@ -1,12 +1,15 @@
 import React, { useState } from 'react';
+import LoadingIndicator from './LoadingIndicator';
 
 function Form() {
     const [bufferSize, setBufferSize] = useState('');
     const [matrix, setMatrix] = useState('');
     const [sequences, setSequences] = useState('');
     const [result, setResult] = useState(null); 
+    const [isLoading, setIsLoading] = useState(false);
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true);
         setResult(null);
         const matrixRows = matrix.trim().split('\n').map(row => row.trim().split(/\s+/));
         const sequenceLines = sequences.trim().split('\n');
@@ -42,6 +45,8 @@ function Form() {
         } catch (error) {
             console.error("Failed to solve the algorithm:", error);
             setResult(result);
+        }finally {
+            setIsLoading(false); // Finish loading
         }
     };
     
@@ -113,7 +118,10 @@ function Form() {
                     Solve
                 </button>
             </form>
-            {result && (
+            {isLoading ? (
+                <LoadingIndicator/> // Your loading indicator
+            ) :
+            result && (
                 <div className="mt-8 p-4 border rounded shadow-lg bg-white  ">
                     <h3 className="text-lg font-semibold">Result</h3>
                     <p><strong>Best Reward:</strong> {result.bestReward}</p>

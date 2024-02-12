@@ -1,15 +1,17 @@
 import React, { useState } from 'react';
+import LoadingIndicator from './LoadingIndicator';
 
 function FileUpload() {
     const [file, setFile] = useState(null);
     const [result, setResult] = useState(null);
-
+    const [isLoading, setIsLoading] = useState(false);
     const handleFileChange = (e) => {
         setFile(e.target.files[0]); 
     };
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+        setIsLoading(true); // Start loading
         setResult(null);
         if (!file) {
             alert("Please select a file before submitting.");
@@ -33,6 +35,8 @@ function FileUpload() {
             setResult(resultData); 
         } catch (error) {
             console.error("Failed to upload the file:", error);
+        }finally {
+            setIsLoading(false); // Finish loading
         }
     };
     const downloadResults = () => {
@@ -79,7 +83,10 @@ function FileUpload() {
                     Upload
                 </button>
             </form>
-            {result && (
+            {isLoading ? (
+                <LoadingIndicator/> // Your loading indicator
+            ) :
+            result && (
                 <>
                     <div className="mt-8 p-4 border rounded shadow-lg bg-white">
                         <h3 className="text-lg font-semibold">Matrix</h3>
