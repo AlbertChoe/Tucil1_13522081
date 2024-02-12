@@ -34,6 +34,7 @@ const Navbar = () => {
                                 <Link to="/" className="text-gray-300 hover:bg-indigo-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">Full Manual</Link>
                                 <Link to="/upload" className="text-gray-300 hover:bg-indigo-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium">File Upload</Link>
                                 <Link to="/auto" className="text-gray-300 hover:bg-indigo-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"> Auto Generate</Link>
+                                <Link to="/howtouse" className="text-gray-300 hover:bg-indigo-700 hover:text-white px-3 py-2 rounded-md text-sm font-medium"> How to Use</Link>
                             </div>
                         </div>
                     </div>
@@ -46,6 +47,7 @@ const Navbar = () => {
                     <Link to="/" className="hover:bg-indigo-700 text-white block px-3 py-2 rounded-md text-base font-medium">Full Manual</Link>
                     <Link to="/upload" className="hover:bg-indigo-700 text-white block px-3 py-2 rounded-md text-base font-medium">File Upload</Link>
                     <Link to="/auto" className="hover:bg-indigo-700 text-white block px-3 py-2 rounded-md text-base font-medium">Auto Generate</Link>
+                    <Link to="/howtouse" className="hover:bg-indigo-700 text-white block px-3 py-2 rounded-md text-base font-medium">How to Use</Link>
                 </div>
             </div>
         </nav>

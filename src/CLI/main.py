@@ -77,6 +77,7 @@ def main():
 
 
 if __name__ == "__main__":
+    print("Welcome to Cyberpunk 2077 Solver created by Albert-13522081")
     while True:
         main()
         rerun = input("Do you want to try the program again?(y/n)")
