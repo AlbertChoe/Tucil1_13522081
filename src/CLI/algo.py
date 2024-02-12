@@ -152,17 +152,19 @@ def sequence_validator(sequences, buffer_size):
     return adjusted_sequences
 
 
-def save_to_file(best_reward=0, best_path=[], best_trimmed_path=[], time_taken=0, file_name='result.txt'):
-    # Convert each position tuple into a string
-    path_tokens_str = [
-        '' + ''.join(map(str, pos)) + '' for pos in best_path]
-    trimmed_path_tokens_str = [
-        '(' + ', '.join(map(str, pos)) + ')' for pos in best_trimmed_path]
+def save_to_file(best_reward=0, best_trimmed_path_tokens=[], best_trimmed_path=[], time_taken=0, file_name='result.txt'):
+    # Join the tokens for the best trimmed path into a single string
+    best_trimmed_path_tokens_str = ' '.join(best_trimmed_path_tokens)
+
+    best_trimmed_path_positions_str = '\n'.join(
+        [f"{pos[1]+1}, {pos[0]+1}" for pos in best_trimmed_path])
 
     with open(file_name, 'w') as file:
-        file.write(f"Best Reward: {best_reward}\n")
-        file.write("Best Path Tokens: " + ' '.join(path_tokens_str) + "\n")
-        file.write("Best Trimmed Path Tokens: " +
-                   ' '.join(trimmed_path_tokens_str) + "\n")
-        file.write(f"Time taken: {time_taken:.2f} ms\n")
+        file.write(f"{best_reward}\n")
+        file.write(f"{best_trimmed_path_tokens_str}\n")
+        for pos_str in best_trimmed_path_positions_str.split('\n'):
+            file.write(f"{pos_str}\n")
+        file.write("\n")
+        file.write(f"{time_taken} ms\n")
+
     print(f"Results saved to {file_name}.")

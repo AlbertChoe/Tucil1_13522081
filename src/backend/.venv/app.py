@@ -27,13 +27,17 @@ def solve():
         matrix, sequences_formatted, buffer_size)
     end_time = time.time()
     time_taken = (end_time - start_time) * 1000
-    best_trimmed_path_tokens = [matrix[pos[0]][pos[1]]
-                                for pos in best_trimmed_path]
+    adjusted_best_trimmed_path = [(pos[1]+1, pos[0]+1)
+                                  for pos in best_trimmed_path]
+
+    # Generate tokens for the adjusted best trimmed path
+    best_trimmed_path_tokens = [
+        ' '.join(matrix[pos[0]][pos[1]] for pos in best_trimmed_path)]
 
     # Construct the result to send back to the frontend
     result = {
         'bestReward': best_reward,
-        'bestTrimmedPath': best_trimmed_path,
+        'bestTrimmedPath': adjusted_best_trimmed_path,
         'bestTrimmedPathTokens': best_trimmed_path_tokens,
         'timeTaken': round(time_taken, 2)
     }
@@ -71,8 +75,12 @@ def upload_file():
         end_time = time.time()
         time_taken = (end_time - start_time) * 1000
 
-        best_trimmed_path_tokens = [matrix[pos[0]][pos[1]]
-                                    for pos in best_trimmed_path]
+        adjusted_best_trimmed_path = [(pos[1]+1, pos[0]+1)
+                                      for pos in best_trimmed_path]
+
+        # Generate tokens for the adjusted best trimmed path
+        best_trimmed_path_tokens = [
+            ' '.join(matrix[pos[0]][pos[1]] for pos in best_trimmed_path)]
         sequences_response = [{'sequence': ' '.join(
             seq[0]), 'reward': seq[1]} for seq in sequences]
         # Construct the result to send back to the frontend
@@ -80,7 +88,7 @@ def upload_file():
         result = {
             'bestReward': best_reward,
             'bestPath': best_path,
-            'bestTrimmedPath': best_trimmed_path,
+            'bestTrimmedPath': adjusted_best_trimmed_path,
             'bestTrimmedPathTokens': best_trimmed_path_tokens,
             'timeTaken': round(time_taken, 2),
             'matrix': matrix,
@@ -127,6 +135,10 @@ def auto_solve():
     time_taken = (end_time - start_time) * 1000
     # print("Best Trimmed Path:", best_trimmed_path)
     # print("Matrix Sample:", matrix[0][0])
+    adjusted_best_trimmed_path = [(pos[1]+1, pos[0]+1)
+                                  for pos in best_trimmed_path]
+
+    # Generate tokens for the adjusted best trimmed path
     best_trimmed_path_tokens = [
         ' '.join(matrix[pos[0]][pos[1]] for pos in best_trimmed_path)]
     sequences_response = [{'sequence': ' '.join(
@@ -134,7 +146,7 @@ def auto_solve():
     result = {
         'bestReward': best_reward,
         'bestPath': best_path,
-        'bestTrimmedPath': best_trimmed_path,
+        'bestTrimmedPath': adjusted_best_trimmed_path,
         'bestTrimmedPathTokens': best_trimmed_path_tokens,
         'timeTaken': round(time_taken, 2),
         'matrix': matrix,

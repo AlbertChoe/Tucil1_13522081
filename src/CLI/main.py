@@ -8,7 +8,7 @@ def main():
         "Use file input or terminal input? (file/terminal): ").lower()
     if data_source == 'file':
         file_path = input("txt file name : ")
-        data = read_file("../../test/"+file_path)
+        data = read_file(file_path)
         if data == None:
             return
         buffer_size = data['buffer_size']
@@ -68,18 +68,19 @@ def main():
 
     # Inside your main function, after computing best_reward, best_path, etc.
     save_output = input(
-        "\nDo you want to save the results to a file? (yes/no): ")
-    if save_output.lower() == 'yes':
+        "\nDo you want to save the results to a file? (y/n): ")
+    if save_output.lower() == 'y':
         save_to_file(best_reward, path_tokens,
                      best_trimmed_path, time_taken)
     else:
-        print("Thank you!")
+        print("Thank you!\n")
 
 
 if __name__ == "__main__":
-    print("Welcome to Cyberpunk 2077 Solver created by Albert-13522081")
+    print("Welcome to Cyberpunk 2077 Solver created by Albert-13522081\n")
     while True:
         main()
         rerun = input("Do you want to try the program again?(y/n)")
+        print()
         if rerun.lower == 'n':
             break
