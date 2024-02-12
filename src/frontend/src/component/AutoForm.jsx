@@ -72,7 +72,6 @@ function AutoForm() {
         <div className="max-w-screen-xl w-full h-fit bg-slate-100 rounded-xl px-16 pb-16 pt-10 m-auto">
             <h1 className='md:w-1/2 w-10/12  text-3xl mb-10 mx-auto '>Auto Generate Matrix and Sequence</h1>
             <form onSubmit={handleSubmit} className="grid md:grid-cols-2 grid-cols-1 gap-7">
-              
             <div className='flex flex-col w-full '>
                     <label htmlFor="bufferSize" className="block text-sm font-medium text-gray-700">Buffer Size</label>
                     <input
@@ -147,15 +146,15 @@ function AutoForm() {
                 <>
                     <div className="mt-8 p-4 border rounded shadow-lg bg-white">
                         <h3 className="text-lg font-semibold">Matrix</h3>
-                        {result.matrix.map((row, index) => (
+                        {result.matrix ? result.matrix.map((row, index) => (
                             <div key={index}>{row.join(' ')}</div>
-                        ))}
+                        )) : <p>Loading...</p>}
                     </div>
                     <div className="mt-4 p-4 border rounded shadow-lg bg-white">
                         <h3 className="text-lg font-semibold">Sequences with Rewards</h3>
-                        {result.sequences.map((seq, index) => (
+                        {result.sequences ? result.sequences.map((seq, index) => (
                             <div key={index}>{seq.sequence} - Reward: {seq.reward}</div>
-                        ))}
+                        )) : <p>Loading...</p>}
                     </div>
 
                     <div className="mt-4 p-4 border rounded shadow-lg bg-white">

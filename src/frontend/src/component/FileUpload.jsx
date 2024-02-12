@@ -83,16 +83,17 @@ function FileUpload() {
                 <>
                     <div className="mt-8 p-4 border rounded shadow-lg bg-white">
                         <h3 className="text-lg font-semibold">Matrix</h3>
-                        {result.matrix.map((row, index) => (
+                        {result.matrix ? result.matrix.map((row, index) => (
                             <div key={index}>{row.join(' ')}</div>
-                        ))}
+                        )) : <p>Loading...</p>}
                     </div>
                     <div className="mt-4 p-4 border rounded shadow-lg bg-white">
                         <h3 className="text-lg font-semibold">Sequences with Rewards</h3>
-                        {result.sequences.map((seq, index) => (
+                        {result.sequences ? result.sequences.map((seq, index) => (
                             <div key={index}>{seq.sequence} - Reward: {seq.reward}</div>
-                        ))}
+                        )) : <p>Loading...</p>}
                     </div>
+
 
                     <div className="mt-4 p-4 border rounded shadow-lg bg-white">
                         <h3 className="text-lg font-semibold">Result</h3>
