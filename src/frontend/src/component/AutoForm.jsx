@@ -43,25 +43,29 @@ function AutoForm() {
 
     const downloadResults = () => {
         if (!result) return;
-
-        // Construct a neatly formatted content string
+    
+        // Preparing the content for the best path, considering the adjustments
+        const bestPathFormatted = result.bestTrimmedPath.map(pos => `${pos[0]}, ${pos[1]}`).join('\n');
+    
         const content = [
-            `Best Reward: ${result.bestReward}`,
-            `Best Trimmed Path: [${result.bestTrimmedPath.join('], [')}]`,
-            `Best Trimmed Path Tokens: ${result.bestTrimmedPathTokens.join(' -> ')}`,
-            `Time Taken: ${result.timeTaken} ms`
+            `${result.bestReward}`,
+            `${result.bestTrimmedPathTokens.join(' ')}`,
+            bestPathFormatted,' ',
+            `${result.timeTaken} ms`
         ].join('\n');
     
-        
         const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+    
         const fileUrl = URL.createObjectURL(blob);
+    
+        // Create a temporary link to trigger the download
         const link = document.createElement('a');
         link.href = fileUrl;
-        link.download = 'results.txt';
-        document.body.appendChild(link);
-        link.click();
-        document.body.removeChild(link);
-        URL.revokeObjectURL(fileUrl);
+        link.download = 'results.txt'; // The default filename for the download
+        document.body.appendChild(link); // Required for Firefox
+        link.click(); // Trigger the download
+        document.body.removeChild(link); // Clean up
+        URL.revokeObjectURL(fileUrl); // Free up resources
     };
 
     return (
@@ -156,8 +160,8 @@ function AutoForm() {
                     <div className="mt-4 p-4 border rounded shadow-lg bg-white">
                         <h3 className="text-lg font-semibold">Result</h3>
                         <p><strong>Best Reward:</strong> {result.bestReward}</p>
-                        <p><strong>Best Path:</strong> [{result.bestTrimmedPath.join('], [')}]</p>
                         <p><strong>Best Path Tokens:</strong> {result.bestTrimmedPathTokens.join(' -> ')}</p>
+                        <p><strong>Best Path:</strong> [{result.bestTrimmedPath.join('], [')}]</p>
                         <p><strong>Time Taken:</strong> {result.timeTaken} ms</p>
                         <button
                             onClick={downloadResults}

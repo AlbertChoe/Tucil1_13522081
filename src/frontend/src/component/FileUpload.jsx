@@ -37,21 +37,21 @@ function FileUpload() {
     };
     const downloadResults = () => {
         if (!result) return;
-
-
-    const content = [
-        `Best Reward: ${result.bestReward}`,
-        `Best Trimmed Path: [${result.bestTrimmedPath.join('], [')}]`,
-        `Best Trimmed Path Tokens: ${result.bestTrimmedPathTokens.join(' -> ')}`,
-        `Time Taken: ${result.timeTaken} ms`
-    ].join('\n');
-
-
-    const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
-
-   
+    
+        // Preparing the content for the best path, considering the adjustments
+        const bestPathFormatted = result.bestTrimmedPath.map(pos => `${pos[0]}, ${pos[1]}`).join('\n');
+    
+        const content = [
+            `${result.bestReward}`,
+            `${result.bestTrimmedPathTokens.join(' ')}`,
+            bestPathFormatted,' ',
+            `${result.timeTaken} ms`
+        ].join('\n');
+    
+        const blob = new Blob([content], { type: 'text/plain;charset=utf-8' });
+    
         const fileUrl = URL.createObjectURL(blob);
-
+    
         // Create a temporary link to trigger the download
         const link = document.createElement('a');
         link.href = fileUrl;
@@ -61,6 +61,7 @@ function FileUpload() {
         document.body.removeChild(link); // Clean up
         URL.revokeObjectURL(fileUrl); // Free up resources
     };
+    
     return (
         <div className="max-w-screen-md mx-auto p-8">
             <h1 className="text-xl font-semibold mb-4">Upload TXT File</h1>
@@ -96,8 +97,8 @@ function FileUpload() {
                     <div className="mt-4 p-4 border rounded shadow-lg bg-white">
                         <h3 className="text-lg font-semibold">Result</h3>
                         <p><strong>Best Reward:</strong> {result.bestReward}</p>
-                        <p><strong>Best Path:</strong> [{result.bestTrimmedPath.join('], [')}]</p>
                         <p><strong>Best Path Tokens:</strong> {result.bestTrimmedPathTokens.join(' -> ')}</p>
+                        <p><strong>Best Path:</strong> [{result.bestTrimmedPath.join('], [')}]</p>
                         <p><strong>Time Taken:</strong> {result.timeTaken} ms</p>
                         <button
                             onClick={downloadResults}
