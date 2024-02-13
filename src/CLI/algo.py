@@ -158,7 +158,7 @@ def save_to_file(best_reward=0, best_trimmed_path_tokens=[], best_trimmed_path=[
 
     best_trimmed_path_positions_str = '\n'.join(
         [f"{pos[1]+1}, {pos[0]+1}" for pos in best_trimmed_path])
-
+    time_taken = round(time_taken, 2)
     with open(file_name, 'w') as file:
         file.write(f"{best_reward}\n")
         file.write(f"{best_trimmed_path_tokens_str}\n")
