@@ -46,17 +46,6 @@ The game follows a set of rules to determine how sequences are matched and rewar
 
 
 
-<!-- If you have screenshots you'd like to share, include them here. -->
-### Search Page
-<!-- ![LandingPage](./img/searchpage.png)-->
-### Sample Search
-#### **Upload Photo By Image**
-
-#### **Upload Photo By Camera**
-
-
-
-
 ## Setup
 This project offers both a web-based GUI and a CLI option for users to interact with the Breach Protocol solver. Follow the steps below based on your preferred method of use.
 ##WEB-BASED GUI
